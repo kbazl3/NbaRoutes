@@ -1,0 +1,24 @@
+<div class="home-inner-container" ng-repeat="team in allTeamData">
+	<div class="team-wrapper">
+	  <div class="logo">
+	    <img ng-src="{{ team.teamLogo }}">
+	  </div>
+	  <div class="record">
+		<p>{{ team.homeTeamDisplay }}</p>
+	    <p class="homepage-win-counter"> Wins: {{ team.wins }} Losses: {{ team.losses }} </p>
+	  </div>
+
+	  <div class="homepage-team-data">
+	    <div class="game" ng-repeat="game in team | orderBy:'createdAt':true" ng-class="{'even' : $index % 2 === 0}">
+	      <!-- Each game should end up looking something like this:
+	        Date: May 29, 1997
+	        Utah Jazz - 103
+	        Houston Rockets - 100
+	      -->
+	      Date: {{ game.createdAt | date }}<br />
+	      {{ team.homeTeamDisplay }} - {{ game.homeTeamScore }} <br />
+	      {{ game.opponent }} - {{ game.opponentScore }} </br />
+	    </div>
+	  </div>
+  </div>
+</div>
